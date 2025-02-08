@@ -22,10 +22,10 @@ class FileUploadGUI(QMainWindow):
     
     def getImagePath(self):
         return self.image_path
-        
+
     def initUI(self):
         self.setWindowTitle('noteAI')
-        self.setGeometry(500, 200, 800, 600)
+        self.setGeometry(500, 160, 800, 600)
         self.setStyleSheet(MAIN_STYLE)
         
         # Create central widget and main layout
@@ -121,13 +121,13 @@ class FileUploadGUI(QMainWindow):
         
         # Update status label
         self.status_label.setStyleSheet("""
-            background-color: #DF6D14;
+            background-color: #789DBC;
             color: white;
             padding: 10px;
             border-radius: 5px;
-            font-size: 12px;
+            font-size: 16px;
         """)
-        self.status_label.setText('Processing files...')
+        self.status_label.setText('Processing files, please wait until done....')
 
         # Force the UI to update
         QApplication.processEvents()

@@ -1,3 +1,6 @@
 .env
 test.pdf
 test.png
+output/
+output/*
+test.md

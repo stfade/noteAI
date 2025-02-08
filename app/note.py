@@ -73,6 +73,7 @@ You will then process this single prompt and the **attached PDF file** to genera
 
 **By adhering to these principles, you will serve as a valuable and reliable AI Note-Taking Assistant, helping students to learn more efficiently and effectively from their PDF study materials uploaded to the application as files.**
 
+Please give the output in a markdown format.
 """
 
 prompt_sum = """
@@ -181,9 +182,6 @@ class Note():
             ],
         )
 
-        # I do saving part in here instead of logic part because of the response length. 
-        # I do not want to return all of the content.
-        
         # Save the generated note in English to a file
         try:
             save_to_file(filepath=filepath, content=response.text, type=type)
@@ -196,3 +194,5 @@ class Note():
             translator.translate(filepath=filepath, content=response.text, type=type)
         except Exception as e:
             print(f"Error translating to Turkish: {str(e)}")
+
+        return response.text

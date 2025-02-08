@@ -21,12 +21,12 @@ def process_logic(pdf_path, image_path):
 
         # Generate note with extracted text
         try:
-            # print(f"Generating Q&A pairs note ...")
-            # generator.gen_qa_note_pdf(image_text)
-            # print(f"Q&A pairs note generated successfully.")
+            print(f"Generating Q&A pairs note ...")
+            notes_qa = generator.gen_qa_note_pdf(image_text)
+            print(f"Q&A pairs note generated successfully.")
 
             print(f"Generating summary note ...")
-            generator.gen_sum_note_pdf(image_text)
+            notes_sum = generator.gen_sum_note_pdf(image_text)
             print(f"Summary note generated successfully.")
 
         except Exception as e:
