@@ -3,7 +3,7 @@ from google.genai import types
 import os
 from dotenv import load_dotenv
 import pathlib
-from file_ops import save_to_file
+from utils import save_to_file
 from translator import Translator
 
 load_dotenv()

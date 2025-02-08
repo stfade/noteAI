@@ -1,6 +1,10 @@
+.gitignore
 .env
 test.pdf
 test.png
 output/
-output/*
 test.md
+
+main.spec
+build/
+dist/

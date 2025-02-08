@@ -2,7 +2,7 @@ from google import genai
 from google.genai import types
 import os
 from dotenv import load_dotenv
-from file_ops import save_to_file
+from utils import save_to_file
 
 load_dotenv()
 

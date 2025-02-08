@@ -2,17 +2,14 @@ import sys
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QFont, QIcon
 from gui import FileUploadGUI
-import os
+from utils import get_resource_path
 
 def main():
     app = QApplication(sys.argv)
     app.setFont(QFont('Cascadia Mono SemiBold'))
 
-    # Construct an absolute path to the icon (adjust if needed)
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    icon_path = os.path.join(current_dir, 'assets', 'app-icon.png')
-
-    # Set the app icon
+    # Set window icon properly
+    icon_path = get_resource_path("app/assets/app-icon.ico")
     app.setWindowIcon(QIcon(icon_path))
 
     gui = FileUploadGUI()
