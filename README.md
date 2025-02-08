@@ -8,7 +8,7 @@ noteAI is a Python-based desktop application that enables you to extract text fr
   Uses OCR and image captioning to extract text from images ([`app/image2text.py`](app/image2text.py)).
 
 - **Study Note Generation:**  
-  Processes PDF files to generate study notes in a Q&A format ([`app/note.py`](app/note.py)).
+  Processes PDF files to generate study notes in a Summary and Q&A format ([`app/note.py`](app/note.py)).
 
 - **Graphical User Interface:**  
   A user-friendly PyQt5 interface for uploading files and processing ([`app/gui.py`](app/gui.py)).

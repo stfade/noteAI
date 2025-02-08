@@ -29,7 +29,7 @@ Ensure the translation maintains the original tone, intent, and cultural nuances
 If the text contains idioms, proverbs, or culturally specific references, provide an equivalent expression in Turkish. 
 Highlight any ambiguous phrases where context might affect accuracy. Do not add notes or explanations for humans.
 
---- 
+---
 
 {english_text}
 """
@@ -39,7 +39,7 @@ class Translator():
         self.client = genai.Client(api_key=os.getenv('GOOGLE_API_KEY'), http_options={'api_version': 'v1alpha'})
 
     # Translate English text to Turkish using the AI model and save the output to a file
-    def translate(self, filepath, content):
+    def translate(self, filepath, content, type):
         if not isinstance(content, str):
             raise ValueError("Content must be a string.")
 
@@ -49,7 +49,7 @@ class Translator():
         response = self.client.models.generate_content(
             model='gemini-2.0-flash-thinking-exp',
             config=types.GenerateContentConfig(
-                temperature=0.7,
+                temperature=0.9,
                 max_output_tokens=50000,
                 system_instruction=sys_instruction
             ),
@@ -60,6 +60,6 @@ class Translator():
 
         # Save the translated note to a file
         try:
-            save_to_file(filepath=filepath, content=response.text, lang="tr")
+            save_to_file(filepath=filepath, content=response.text, lang="tr", type=type)
         except Exception as e:
             print(f"Error saving file: {str(e)}")

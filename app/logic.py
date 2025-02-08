@@ -1,6 +1,5 @@
 from image2text import Image2Text
 from note import Note
-import os
 
 def process_logic(pdf_path, image_path):
     # pdf_path = "//wsl.localhost/Ubuntu/home/user0/Projects/AI/noteAI/part-1.pdf"
@@ -20,12 +19,15 @@ def process_logic(pdf_path, image_path):
             print(f"Error getting text from the image: {str(e)}")
             return
 
+        # Generate note with extracted text
         try:
-            print(f"Generating note ...")
-            # Generate note with extracted text
-            generator.gen_qa_note_pdf(image_text)
+            # print(f"Generating Q&A pairs note ...")
+            # generator.gen_qa_note_pdf(image_text)
+            # print(f"Q&A pairs note generated successfully.")
 
-            print(f"Note generated successfully.")
+            print(f"Generating summary note ...")
+            generator.gen_sum_note_pdf(image_text)
+            print(f"Summary note generated successfully.")
 
         except Exception as e:
             print(f"Error generating note: {str(e)}")
