@@ -4,6 +4,9 @@ import os
 from dotenv import load_dotenv
 from utils import save_to_file
 
+TEMPERATURE = 0.9
+MAX_OUTPUT_TOKENS = 128000
+
 load_dotenv()
 
 sys_instruction = """
@@ -19,6 +22,7 @@ Rules:
 Do not explain or provide notes to a human reader.
 Maintain clarity and readability.
 Highlight ambiguous phrases that require contextual clarification.
+Do not translate terms.
 Output Format: Translated Turkish text without additional commentary
 Revision Log: Updates in phrasing, tone, or handling of ambiguous terms based on feedback.
 """
@@ -28,7 +32,7 @@ Translate the following English text into clear and natural Turkish.
 Ensure the translation maintains the original tone, intent, and cultural nuances. 
 If the text contains idioms, proverbs, or culturally specific references, provide an equivalent expression in Turkish. 
 Highlight any ambiguous phrases where context might affect accuracy. Do not add notes or explanations for humans.
-
+Please do not translate terms.
 ---
 
 {english_text}
@@ -49,8 +53,8 @@ class Translator():
         response = self.client.models.generate_content(
             model='gemini-2.0-flash-thinking-exp',
             config=types.GenerateContentConfig(
-                temperature=0.9,
-                max_output_tokens=50000,
+                temperature=TEMPERATURE,
+                max_output_tokens=MAX_OUTPUT_TOKENS,
                 system_instruction=sys_instruction
             ),
             contents=[

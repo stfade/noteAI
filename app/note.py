@@ -6,6 +6,9 @@ import pathlib
 from utils import save_to_file
 from translator import Translator
 
+TEMPERATURE = 0.7
+MAX_OUTPUT_TOKENS = 128000
+
 load_dotenv()
 
 sys_instruction_qa = """
@@ -138,11 +141,11 @@ class Note():
 
     # Generate note about topic list from pdf (QA format)
     def gen_qa_note_pdf(self, topic_list):
-        self.gen_note(topic_list, type="qa")
+        return self.gen_note(topic_list, type="qa")
 
     # Generate note about topic list from pdf (Summary format)
     def gen_sum_note_pdf(self, topic_list):
-        self.gen_note(topic_list, type="sum")
+        return self.gen_note(topic_list, type="sum")
 
     def gen_note(self, topic_list, type="sum"):
         if not isinstance(topic_list, str):
@@ -168,8 +171,8 @@ class Note():
         response = self.client.models.generate_content(
             model='gemini-2.0-flash-thinking-exp',
             config=types.GenerateContentConfig(
-                temperature=0.7,
-                max_output_tokens=50000,
+                temperature=TEMPERATURE,
+                max_output_tokens=MAX_OUTPUT_TOKENS,
                 system_instruction=sys_inst_f
 
             ),
@@ -184,7 +187,7 @@ class Note():
 
         # Save the generated note in English to a file
         try:
-            save_to_file(filepath=filepath, content=response.text, type=type)
+            save_to_file(filepath=filepath, content=response.text, lang="en", type=type)
         except Exception as e:
             print(f"Error saving file: {str(e)}")
 
